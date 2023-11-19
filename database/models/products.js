@@ -1,6 +1,8 @@
-"use strict";
-const { Model } = require("sequelize");
-module.exports = (sequelize, DataTypes) => {
+/* eslint-disable no-unused-vars */
+const { Model, DataTypes } = require("sequelize");
+import connection from "../connection";
+
+const initProducts = (sequelize, Types) => {
   class products extends Model {
     /**
      * Helper method for defining associations.
@@ -40,3 +42,5 @@ module.exports = (sequelize, DataTypes) => {
   );
   return products;
 };
+
+export default initProducts(connection, DataTypes);

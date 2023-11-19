@@ -1,3 +1,3 @@
 export default function Home() {
-  return <div>hi</div>;
+  return <div className="text-lg">hi</div>;
 }
