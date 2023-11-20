@@ -1,40 +1,41 @@
-const { Model, DataTypes } = require("sequelize");
-const connection = require("../connection");
+const { Model } = require("sequelize");
 
-class products extends Model {
-  static associate(models) {
-    products.belongsTo(models.brands, {
-      foreignKey: "brandId",
-      targetKey: "id",
-      as: "brand",
-    });
+module.exports = (sequelize, DataTypes) => {
+  class products extends Model {
+    static associate(models) {
+      this.belongsTo(models.brands);
+    }
   }
-}
-products.init(
-  {
-    id: {
-      allowNull: false,
-      primaryKey: true,
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
+  products.init(
+    {
+      id: {
+        allowNull: false,
+        primaryKey: true,
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+      },
+      name: {
+        type: DataTypes.STRING,
+      },
+      images: {
+        type: DataTypes.STRING,
+      },
+      brandId: {
+        type: DataTypes.UUID,
+        field: "brand_id",
+        references: {
+          model: brands,
+          key: "id",
+        },
+      },
     },
-    name: {
-      type: DataTypes.STRING,
-    },
-    images: {
-      type: DataTypes.STRING,
-    },
-    brandId: {
-      type: DataTypes.UUID,
-      field: "brand_id",
-    },
-  },
-  {
-    sequelize: connection,
-    modelName: "products",
-    timestamps: true,
-    underscored: true,
-  }
-);
+    {
+      sequelize: connection,
+      modelName: "products",
+      timestamps: true,
+      underscored: true,
+    }
+  );
 
-module.exports = products;
+  return products;
+};
