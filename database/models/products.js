@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 const { Model, DataTypes } = require("sequelize");
-import connection from "../connection";
+const connection = require("../connection");
 
 const initProducts = (sequelize, Types) => {
   class products extends Model {

@@ -1,14 +1,16 @@
-import { brands } from "../database/models";
-// ----------------------------------------------------------------
+// import { brands } from "../database/models";
+const { brands } = require("../database/models");
+
+console.log(JSON.stringify(brands));
+
 export async function create_brands({ name }) {
-  const brands = await brands.create({
-    name: TEST,
+  const createdBrand = await brands.create({
+    name: name,
   });
-  return brands.dataValues;
+  return createdBrand.dataValues;
 }
 
-//--------------------------------------------------------------------------
 export async function fetch_brands() {
-  const products = await brands.findAll();
-  return products;
+  const allBrands = await brands.findAll();
+  return allBrands;
 }

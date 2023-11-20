@@ -1,4 +1,5 @@
-import brands from "./brands";
-import products from "./products";
+const sequelize = require("../connection");
+const brands = require("./brands");
+const products = require("./products");
 
-export { brands, products };
+export { sequelize, brands, products };
